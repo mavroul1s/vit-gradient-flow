@@ -1,0 +1,20 @@
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# Julia
+Manifest.toml
+*.jl.cov
+*.jl.tecov
+*.jl.mem
+
+# Data and Results
+data/*
+!data/.gitkeep
+results/figures/*
+results/logs/*
+!results/figures/.gitkeep
+!results/logs/.gitkeep
+
+# OS generated files
+.DS_Store
+Thumbs.db
