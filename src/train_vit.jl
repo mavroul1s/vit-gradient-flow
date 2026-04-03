@@ -123,7 +123,8 @@ end
 Flux.@layer PatchEmbedding
 
 function PatchEmbedding(init_fn)
-    proj = Dense(init_fn(PATCH_DIM, D_MODEL), zeros(Float32, D_MODEL))
+    # FIXED: Flipped PATCH_DIM and D_MODEL to match (out, in)
+    proj = Dense(init_fn(D_MODEL, PATCH_DIM), zeros(Float32, D_MODEL))
     cls  = randn(Float32, D_MODEL, 1) .* 0.02f0
     pos  = randn(Float32, D_MODEL, NUM_PATCHES + 1) .* 0.02f0
     return PatchEmbedding(proj, cls, pos)
@@ -229,8 +230,9 @@ end
 Flux.@layer FeedForward
 
 function FeedForward(init_fn)
-    fc1 = Dense(init_fn(D_MODEL, MLP_HIDDEN), zeros(Float32, MLP_HIDDEN), gelu)
-    fc2 = Dense(init_fn(MLP_HIDDEN, D_MODEL), zeros(Float32, D_MODEL))
+    # FIXED: Flipped input and output dimensions for both layers
+    fc1 = Dense(init_fn(MLP_HIDDEN, D_MODEL), zeros(Float32, MLP_HIDDEN), gelu)
+    fc2 = Dense(init_fn(D_MODEL, MLP_HIDDEN), zeros(Float32, D_MODEL))
     return FeedForward(fc1, fc2)
 end
 
@@ -292,7 +294,8 @@ function ViT(init_fn)
     pe     = PatchEmbedding(init_fn)
     blocks = [TransformerBlock(init_fn) for _ in 1:NUM_BLOCKS]
     ln     = LayerNorm(D_MODEL)
-    head   = Dense(init_fn(D_MODEL, NUM_CLASSES), zeros(Float32, NUM_CLASSES))
+    # FIXED: Flipped NUM_CLASSES and D_MODEL
+    head   = Dense(init_fn(NUM_CLASSES, D_MODEL), zeros(Float32, NUM_CLASSES))
     return ViT(pe, blocks, ln, head)
 end
 
