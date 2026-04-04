@@ -11,10 +11,11 @@ Manifest.toml
 data/*
 !data/.gitkeep
 results/figures/*
-results/logs/*
+!results/figures/*.pdf
+!results/figures/*.png
 !results/figures/.gitkeep
+results/logs/*
 !results/logs/.gitkeep
-
 # OS generated files
 .DS_Store
 Thumbs.db
