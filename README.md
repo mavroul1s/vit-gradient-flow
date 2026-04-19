@@ -21,7 +21,6 @@ Modern architectures like Transformers rely heavily on automatic differentiation
 * **Data:** MNIST (formatted as sequential patches for ViT processing via `MLDatasets.jl`)
 
 ## Repository Structure
-* `/notebooks`: Interactive Julia notebooks verifying mathematical derivations against automatic differentiation.
 * `/src`: Core Julia modules containing the self-attention mechanism, initialization logic, and training loops.
 * `/learning_scripts`: Sandbox environment for testing Julia matrix operations, broadcasting, and differential syntax.
 * `/results`: Generated outputs, including saliency maps, Jacobian condition number plots, and gradient flow visualizations.
