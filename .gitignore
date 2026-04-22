@@ -2,7 +2,6 @@
 .ipynb_checkpoints/
 
 # Julia
-Manifest.toml
 *.jl.cov
 *.jl.tecov
 *.jl.mem
